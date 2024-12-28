@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1ka7oy730umt"]
+[gd_scene load_steps=7 format=3 uid="uid://d1ka7oy730umt"]
 
 [ext_resource type="Texture2D" uid="uid://d4dmyr3yvs4o" path="res://assets/background/rocks_2.png" id="1_bsw3j"]
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_rtxbq"]
 [ext_resource type="PackedScene" uid="uid://c4y51w6ldg6ur" path="res://scenes/plane/plane.tscn" id="2_2oblf"]
+[ext_resource type="PackedScene" uid="uid://cbus2s8jh47o6" path="res://scenes/barrier/barrier.tscn" id="3_acsa3"]
+[ext_resource type="PackedScene" uid="uid://bsf5tkacswyos" path="res://scenes/game_over_ui/game_over_ui.tscn" id="5_0jgwn"]
+[ext_resource type="PackedScene" uid="uid://dbtnej3p34q6a" path="res://scenes/hud/hud.tscn" id="6_np54k"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_rtxbq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(369, 336)
@@ -11,3 +16,29 @@ texture = ExtResource("1_bsw3j")
 
 [node name="Plane" parent="." instance=ExtResource("2_2oblf")]
 position = Vector2(64, 380)
+
+[node name="Barrier" parent="." instance=ExtResource("3_acsa3")]
+position = Vector2(0, -25)
+
+[node name="Barrier2" parent="." instance=ExtResource("3_acsa3")]
+position = Vector2(0, 864)
+
+[node name="SpawnU" type="Marker2D" parent="."]
+position = Vector2(530, 335)
+
+[node name="SpawnL" type="Marker2D" parent="."]
+position = Vector2(530, 540)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 1.65
+autostart = true
+
+[node name="PipesHolder" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverUI" parent="CanvasLayer" instance=ExtResource("5_0jgwn")]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("6_np54k")]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
