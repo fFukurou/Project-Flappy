@@ -20,7 +20,7 @@ position = Vector2(0, 80)
 [node name="Laser" parent="." instance=ExtResource("2_ax6dp")]
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(27, 0)
+position = Vector2(96, 0)
 
 [node name="ScoreSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_33apf")
